@@ -1,0 +1,9 @@
+<fieldset>
+	<%= f.input :first_name, :required => false %> </br>
+	<%= f.input :last_name, :required => false %> </br>
+	<%= f.input :ssn %> </br>
+	<%= f.input :date_of_birth, :as => :string, :input_html => {:class => "datepicker", :value => (@employee.date_of_birth.strftime("%m/%d/%Y") unless @employee.date_of_birth.nil?)}%> </br>
+	<%= f.input :phone %> </br>
+	<%= f.input :role, :collection => Employee::ROLES_LIST %> </br>
+	<%= f.input :active %> </br>
+</fieldset>

@@ -1,0 +1,31 @@
+<!-- form to login (creates new session) -->
+
+<div class = "container-fluid">
+	<div class = "row-fluid">
+		<div class="span4">&nbsp;</div>
+		<div class="span4">
+			<div class="border">
+				<h3>Log In</h3>
+				
+				<%= form_tag sessions_path do %>
+					<div class="control-group">
+    					<%= label_tag :email %>
+    					<div class="controls">
+    						<%= text_field_tag :email, params[:email] %>
+   						</div>
+  					</div>
+
+					<div class="control-group">
+	    				<%= label_tag :password %>
+    					<div class="controls">
+	      					<%= password_field_tag :password %>
+    					</div>	
+  					</div>
+  
+  					<div class="actions"><%= submit_tag "Log In" %></div>
+				<% end %>
+			</div>
+		</div>
+		<div class="span4">&nbsp;</div>
+	</div>
+</div>

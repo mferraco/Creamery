@@ -1,0 +1,24 @@
+<!-- Jobs Index -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">&nbsp;</div>
+		<div class="span4">
+			<div id="tabs">
+				<ul>
+						<li><a href="#tabs-1">Active Jobs</a></li>
+						<li><a href="#tabs-2">Inactive Jobs</a></li>
+				</ul>
+					<!-- shows stores lists -->
+					<div id="tabs-1">
+						<%= render :partial => "active_jobs" %>
+					</div>
+					<div id="tabs-2">
+						<%= render :partial => "inactive_jobs" %>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="span4">&nbsp;</div>
+</div>
+

@@ -1,0 +1,43 @@
+/* My Added Styles */
+
+.home_paragraph
+{
+	font-size: 15px;
+	color: blue;
+	
+}
+
+.myform
+{
+	width: 250px;
+	height: 70px;
+}
+
+.border
+{
+	border-style: solid;
+	border-color: black;
+	padding: 5%;
+	background-color: #CCFFFF;
+}
+
+.white-text
+{
+	color: white;
+}
+
+.field, .actions {
+	padding: 5px 0px 5px 0px;
+}
+
+.error-text {
+	font-size: 12pt;
+}
+
+.flash {
+	color: #00009C;
+	background-color: #DBFEF8;
+	border: 5px solid #00009C;
+	text-align: center;
+}
+

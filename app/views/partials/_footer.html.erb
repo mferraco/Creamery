@@ -1,0 +1,22 @@
+
+<!-- This is the footer partial.  It appears on every page. -->
+
+
+<div id="footer">
+	<div class="row-fluid">
+		<div class="span12" style="text-align: center;">
+			<!-- links to home, about, contact, privacy policy -->
+			<i class="icon-home"></i> <%= link_to 'Home', home_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+  			<i class="icon-info-sign"></i> <%= link_to 'About A&M Creamery', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+			<i class="icon-comment"></i> <%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
+			<i class="icon-lock"></i> <%= link_to 'Privacy Policy', privacy_path %>
+		</div>
+	</div>
+	<div class="row-fluid" style="text-align: center;">
+		<div class="span12">
+			<!-- email webmaster link -->
+			Webmaster: <%= mail_to("mferraco@andrew.cmu.edu", "Mike Ferraco", :encode => "javascript") %> 
+			&nbsp;&nbsp;&copy 2012
+		</div>
+	</div>
+</div>

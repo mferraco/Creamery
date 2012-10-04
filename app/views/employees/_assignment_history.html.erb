@@ -1,0 +1,35 @@
+<!-- the assignment history for the selected employee -->
+<h2><u>Assignment History:</u></h2>
+
+<!-- if the employee does not have an assignment history -->
+<% if @assignments.empty? %> 
+	<h3>~ No assignment history ~</h3>
+<% else %> <!-- the employee has an assignment history -->
+	<!-- Table to hold assignment history details -->
+	<table class = "table table-striped"
+		<thead>
+			<th><u>Store</u></th>
+			<th><u>State Date</u></th>
+			<th><u>End Date</u></th>
+			<th><u>Pay Level</u></th>
+		</thead>
+		<!-- loop through the employee's assignments -->
+		<% @assignments.each do |assignment| %>
+			<tr>
+				<!-- store name -->
+				<td><%= link_to assignment.store.name, assignment.store %></td>
+				<!-- start date -->
+				<td><%= assignment.start_date %></td>
+				<!-- end date -->
+				<td><%= assignment.end_date %></td>
+				<!-- pay level -->
+				<td><%= assignment.pay_level %></td>
+			</tr>
+		<% end %>
+	</table>
+	
+	<!-- Add the pagination using will_paginate gem -->
+	<span class="paginate">
+		<%= will_paginate @assignments, :param_name => 'assignment_page', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+	</span>
+<% end %>

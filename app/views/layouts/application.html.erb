@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Creamery2012</title>
+  <!-- link stylesheet to bootstrap stylesheet -->
+  <%= stylesheet_link_tag    'bootstrap.css', :media => "all" %>
+  <!-- link stylesheet to my own stylesheet -->
+  <%= stylesheet_link_tag    'styles.css', :media => "all" %>
+  <%= stylesheet_link_tag 'jquery-ui-1.8.19.custom.css' %>
+  <%= javascript_include_tag "jquery-1.4.2.min.js", "jquery-ui-1.8.19.custom.min.js", "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<!-- show the header partial -->
+	<%= render :partial => "partials/header" %>
+
+		<!-- flashes messages across top of screen -->
+		<% flash.each do |name, msg| %>
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="alert-success">
+						<div class="flash">
+	        				<%= content_tag :div, msg, :id => "flash_#{name}" %>
+	        			</div>
+	        		</div>
+	    		</div>
+			</div>
+	    <% end %>
+	    
+	    <br>
+	    <!-- page content -->
+		<%= yield %>
+		<br /><br /><br />
+		
+		<!-- blue line above footer -->
+		<div class="row-fluid">
+			<div class="span12" style="text-align: center"><%= image_tag 'line.jpg' %></div>
+		</div>
+	
+		<!-- show the footer partial -->
+		<%= render :partial => "partials/footer" %>
+
+		<!-- blue line below footer -->
+		<div class="row-fluid">
+			<div class="span12" style="text-align: center"><%= image_tag 'line.jpg' %></div>
+		</div>
+</body>
+</html>

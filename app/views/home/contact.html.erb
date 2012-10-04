@@ -1,0 +1,44 @@
+<!-- Contact Us -->
+
+<div class="container-fluid">
+	<div class="row-fluid" style="text-align: center;">
+		<div class="span4">&nbsp;</div>
+		<div class="span4">
+			<div class="page-header">
+				<h1>Contact the Creamery</h1>
+			</div>
+			<div>
+				<!-- ice cream image -->
+				<%= image_tag 'cone.jpg',  :size => '100x100'%>	
+			</div>
+			
+			<p style="font-size: 12pt;">
+				Although you wish Amazing & Marvelous Creamery existed it doesn't...
+				so just go to Razzy Fresh.
+			</p>
+			
+			<!-- table holding contact information -->
+			<table class="table table-bordered" style="background-color: #F0FFF0;">
+				<tr>
+					<!-- Name -->
+					<td>Webmaster:&nbsp;&nbsp;&nbsp;</td>
+					<td><b>Mike Ferraco</b></td>
+				</tr>
+				<tr>
+					<!-- Email -->
+					<td>Email:</td>
+					<td>
+					<b><%= mail_to("mferraco@andrew.cmu.edu", "mferraco@andrew.cmu.edu", :encode => "javascript") %></b> 
+					</td>
+				</tr>
+				<tr>
+					<!-- Phone Number -->
+					<td>Phone:</td>
+					<td><b>111-222-3333</b></td>
+				</tr>
+			</table>
+		</div>
+		<div class="span4">&nbsp;</div>
+	</div>
+</div>
+

@@ -1,0 +1,40 @@
+<!-- table showing past assignments -->
+<table class="table table-striped">
+	<tr>
+		<th><u>Store Name</u></th>
+		<th><u>Employee Name</u></th>
+		<th><u>Start Date</u></th>
+		<th><u>End Date</u></th>
+		<th><u>Pay</u></th>
+	</tr>
+	<!-- loop through assignments -->
+	<% @assignments_past.each do |assignment| %>
+	<tr>
+		<!-- store name -->
+		<td><%= link_to assignment.store.name, assignment.store %></td>
+		<!-- employee name -->
+		<td><%= link_to assignment.employee.name, assignment.employee %></td>
+		<!-- start date -->
+		<td><%= assignment.start_date.strftime("%m/%d/%y") %></td>
+		<!-- end date -->
+		<td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
+		<!-- pay level -->
+		<td><%= assignment.pay_level %></td>
+		<!-- link to details -->
+		<td><%= link_to 'Details', assignment %></td>
+		<!-- link to edit -->
+		<td><%= link_to 'Edit', edit_assignment_path(assignment) %></td>
+	</tr>
+	<% end %>
+</table>
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate"> 
+	<%= will_paginate @assignments_past, :param_name => 'past_page', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %> 
+</span>
+
+<!-- new assignment button which links to the 'new' page -->
+<%= link_to(new_assignment_path) do %>
+<button class="btn btn-primary">
+	<i class="icon-plus-sign icon-white"></i><span class="white-text">New Assignment </span>
+</button>
+<% end %>

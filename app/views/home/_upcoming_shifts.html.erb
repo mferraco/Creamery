@@ -1,0 +1,31 @@
+<% if @upcoming_shifts.nil? %> <!-- if the employee has no upcoming shifts -->
+	<h4>~ No Upcoming Shifts ~</h4>
+<% else %>
+
+<table class = "table table-striped">
+	<thead>
+		<tr>
+			<th><u>Store</u></th>
+			<th><u>Date</u></th>
+			<th><u>Start Time</u></th>
+		</tr>
+	</thead>
+	<!-- loop through shifts -->
+	<% @upcoming_shifts.each do |shift| %>
+  		<tr>
+  			<!-- store -->
+  			<td><%= link_to shift.assignment.store.name, shift.assignment.store %></td>
+  			<!-- date -->
+  			<td><%= shift.date.strftime('%m/%d/%y') %></td>
+  			<!-- start time -->
+    		<td><%= shift.start_time.strftime("%I:%M %p") %></td>
+  		</tr>
+	<% end %>
+</table>
+			
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+	<%= will_paginate @upcoming_shifts, :param_name => 'coming_shifts', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+
+<% end %>

@@ -1,0 +1,50 @@
+<% if @stores_active.size == 0 %>
+	<h3>~ No Active Stores in System ~</h3>
+<% else %>
+
+<!-- table showing all stores -->
+<table class="table table-striped">
+	<tr>
+		<th></th>
+		<th><u>Name</u></th>
+		<th><u>Phone</u></th>
+		<% if can? :edit, Store %> <!-- onlyshow the staff count to users who are allowed to see it-->
+			<th><u>Staff Count</u></th>
+		<% end %>
+	</tr>
+	<% i = 1 %> <!-- labels corresponding to map pins numbers-->
+	<!-- loop through stores -->
+	<% @stores_active.each do |store| %>
+	<tr>
+		<td><%= i %>.</td>
+		<!-- name -->
+		<td><%= link_to store.name, store %></td>
+		<!-- phone -->
+		<td><%= number_to_phone store.phone %></td>
+		
+		<% if can? :edit, Store %>
+			<!-- staff count -->
+			<td><%= store.assignments.current.count %></td>
+			<!-- link to edit -->
+			<td><%= link_to 'Edit', edit_store_path(store) %></td>
+		<% end %>
+		
+	</tr>
+	<% i+=1 %>
+	<% end %>
+</table>
+
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+	<%= will_paginate @stores_active, :param_name => 'active', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+
+<!-- button with link to create a new store -->
+<% if can? :create, Store %>
+	<%= link_to(new_store_path) do %>
+		<button class="btn btn-primary">
+			<i class="icon-plus-sign icon-white"></i><span class="white-text">New Store </span>
+		</button>
+	<% end %>
+<% end %>
+<% end %>

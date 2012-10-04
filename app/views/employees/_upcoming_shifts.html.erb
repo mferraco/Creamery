@@ -1,0 +1,33 @@
+<!-- the upcoming shifts in the next two weeks for the selected employee -->
+
+<h2><u>Shifts in the Next Two Weeks:</u></h2>
+
+<!-- if the employee does not have any upcoming shifts -->
+<% if @upcoming_shifts.empty? %>
+	<h3>~ No shifts next two weeks ~</h3>
+<% else %> <!-- the employee has upcoming shift(s) -->
+	<!-- Table to hold shift details -->
+	<table class = "table table-striped"
+		<thead>
+			<th><u>Store</u></th>
+			<th><u>Date</u></th>
+			<th><u>Start Time</u></th>
+		</thead>
+		<!-- loop through the employee's upcoming shifts -->
+		<% @upcoming_shifts.each do |shift| %>
+			<tr>
+				<!-- store name -->
+				<td><%= link_to shift.assignment.store.name, shift.assignment.store %></td>
+				<!-- date -->
+				<td><%= shift.date.strftime("%m/%d/%y") %></td>
+				<!-- start time -->
+				<td><%= shift.start_time.strftime("%I:%M %p") %></td>
+			</tr>
+		<% end %>
+	</table>
+
+	<!-- Add the pagination using will_paginate gem -->
+	<span class="paginate">
+		<%= will_paginate @upcoming_shifts, :param_name => 'shift_page', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+	</span>
+<% end %>

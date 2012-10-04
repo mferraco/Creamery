@@ -1,0 +1,6 @@
+<fieldset>
+	<%= f.input :email %> </br>
+	<%= f.input :password %> </br>
+	<%= f.input :password_confirmation %> <br>
+	<%= f.input :employee_id, :as => :hidden, :input_html => { :value => @employee.id } %>
+</fieldset>

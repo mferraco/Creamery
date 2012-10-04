@@ -1,0 +1,29 @@
+<% if @jobs_inactive.size == 0 %>
+	<h3>~ No Inactive Jobs in System ~</h3>
+<% else %>
+<!-- table showing jobs -->
+<table class="table table-striped">
+	<tr>
+		<th><u>Name</u></th>
+	</tr>
+	<!-- loop through all the jobs -->
+	<% @jobs_inactive.each do |job| %>
+	<tr>
+		<!-- job name -->
+		<td><%= job.name %></td>
+		<!-- link to details -->
+		<td><%= link_to 'Details', job %></td>
+		<!-- link to edit -->
+		<td><%= link_to 'Edit', edit_job_path(job) %></td>
+	</tr>
+	<% end %>
+</table>
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate"> <%= will_paginate @jobs_inactive, :param_name => 'inactive', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %> </span>
+<!-- new job button which links to the 'new' page -->
+<%= link_to(new_job_path) do %>
+<button class="btn btn-primary">
+	<i class="icon-plus-sign icon-white"></i><span class="white-text">New Job </span>
+</button>
+<% end %>
+<% end %>

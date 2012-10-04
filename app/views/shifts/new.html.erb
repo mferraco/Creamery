@@ -1,0 +1,25 @@
+<!-- new shifts -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">&nbsp;</div>
+		<div class="span4">
+			
+			<div class="page-header"><h1>New Shift</h1></div>
+			
+			<!-- shows form to create a new shift -->
+			<%= render 'form' %>
+			
+			<!-- create back button linked to shift 'index' page -->
+			<%= link_to(shift_path) do -%>
+				<button class="btn btn-small btn-info">
+					<i class="icon-arrow-left icon-white"></i>
+					<span>Back</span>
+				</button>
+			<% end -%>
+			
+		</div>
+		<div class="span4">&nbsp;</div>
+	</div>
+</div>
+

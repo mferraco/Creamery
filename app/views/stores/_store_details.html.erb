@@ -1,0 +1,59 @@
+<div style = "float: left;">
+	<h3><%= @store.name %></h3>
+
+	<!-- details for the individual store -->
+	<address>
+		<b>Address: </b>
+		<br>
+		<%= @store.street %>
+		<br>
+		<%= @store.city %>, <%= @store.state %> <%= @store.zip %>
+	</address>
+</div>
+
+<div style = "display: inline;">
+	<h3>&nbsp;</h3>
+	<b>Phone:</b>
+	<%= number_to_phone(@store.phone) %>
+	
+	<br />
+	<br />
+
+	<% if logged_in? %>
+		<b>Active: </b>
+		<%= if @store.active then 'Yes' else 'No' end%>
+	<% end %>
+
+	<br />
+	<br />
+</div>
+
+<% if can? :edit, Store %>
+	<!-- Button with link to the store 'edit' page -->
+	<%= link_to(edit_store_path(@store)) do %>
+		<button class="btn btn-primary">
+			<i class="icon-pencil icon-white"></i>
+			<span class="white-text"> Edit</span>
+		</button>
+	<% end %>
+<% end %>
+
+<% if can? :delete, Store %>
+	<!-- Button with link to delete the store -->
+	<%= link_to(@store, { :confirm => "Are you sure?", :method => :delete }) do %>
+		<button class="btn btn-danger">
+			<i class="icon-trash icon-white"></i>
+			<span class="white-text"> Delete</span>
+		</button>
+	<% end %>
+<% end %>
+
+<% if can? :read, Store %>
+	<!-- Button with link to the stores 'index' page -->
+	<%= link_to(stores_path) do %>
+		<button class="btn btn-success">
+			<i class="icon-align-justify icon-white"></i>
+			<span class="white-text"> View All</span>
+		</button>
+	<% end %>
+<% end %>

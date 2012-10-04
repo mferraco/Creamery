@@ -1,0 +1,32 @@
+<!-- Manager's Dashboard -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span1">&nbsp;</div>
+		<div class="span5">
+			<!-- show list of employees at the manager's store -->
+			<%= render :partial => 'employee_list' %>
+		</div>
+		<div class="span5">
+			<br/><br/><br/><br/>
+				<!-- tabs to toggle between today's/incomplete shifts -->
+				<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Todays Shifts</a></li>
+					<li><a href="#tabs-2">Incomplete Shifts</a></li>
+				</ul>
+				<div id="tabs-1">
+					<!-- shows today's shifts -->
+					<%= render :partial => 'todays_shifts' %>
+				</div>
+				<div id="tabs-2">
+					<!-- show incomplete shifts -->
+					<%= render :partial => 'incomplete_shifts' %>
+				</div>
+			</div>
+		</div>
+		<div class="span1">&nbsp;</div>
+	</div>
+</div>
+	
+	

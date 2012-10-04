@@ -1,0 +1,20 @@
+<!-- Show Assignment -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">&nbsp;</div>
+		<div class="span4">
+			<!-- Border around assignment details -->
+			<div class="border">
+				<!-- partial includes details on the individual assignment selected -->
+				<%= render :partial => "assignment_details" %>
+			</div>
+		</div>
+		<div class="span4">
+			<!-- partial includes a list of shifts completed during the selected assignment -->
+			<%= render :partial => 'shifts_during' %>
+		</div>
+		<div class="span2">&nbsp;</div>
+	</div>
+</div>
+

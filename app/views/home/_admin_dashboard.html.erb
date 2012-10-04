@@ -1,0 +1,53 @@
+<!-- Administrator's Dashboard -->
+
+<div class = "container-fluid">
+	<div class = "row-fluid">
+		<div class="span2">&nbsp;</div>
+		<div class="span8">
+			<div id="tabs">
+				<ul>
+						<li><a href="#tabs-1">Locations</a></li>
+						<li><a href="#tabs-2">Top Employees</a></li>
+				</ul>
+					<!-- shows stores lists -->
+					<div id="tabs-1">
+						<!-- partial showing all the stores in the system -->
+						<%= render :partial => 'stores' %>
+					</div>
+					<div id="tabs-2">
+						<!-- partial showing the employees working the most hours in the last two weeks -->
+						<%= render :partial => 'top_employees' %>
+					</div>
+			</div>
+		</div>
+		<div class="span2">&nbsp;</div>
+	</div>
+	</br></br>
+	<div class = "row-fluid">
+		<div class="span4">&nbsp;</div>
+		<!-- quick links -->
+		<div class="span4">
+			<!-- button with link to create a new employee -->
+			<%= link_to(new_employee_path) do %>
+  				<button class="btn btn-primary">
+  					<i class="icon-plus-sign icon-white"></i> <span class="white-text">New Employee </span>
+  				</button>
+			<% end %>
+			&nbsp;
+			<!-- new shift button which links to the 'new' page -->
+			<%= link_to(new_shift_path) do %>
+				<button class="btn btn-primary">
+  					<i class="icon-plus-sign icon-white"></i> <span class="white-text">New Shift </span>
+  				</button>
+			<% end %>
+			&nbsp;
+			<!-- new job button which links to the 'new' page -->
+			<%= link_to(new_job_path) do %>
+				<button class="btn btn-primary">
+  					<i class="icon-plus-sign icon-white"></i> <span class="white-text">New Job </span>
+  				</button>
+			<% end %>
+		</div>
+		<div class="span4">&nbsp;</div>
+	</div>
+</div>

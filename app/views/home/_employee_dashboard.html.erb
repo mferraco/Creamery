@@ -1,0 +1,31 @@
+<!-- Employee's Dashboard -->
+
+<div class = "container-fluid">
+	<div class = "row-fluid">
+		<div class="span2">&nbsp;</div>
+		<div class="span3">
+			<div class = "border">
+				<!-- partial showing the logged in employee's details -->
+				<%= render :partial => 'employees/employee_details' %>
+			</div>
+		</div>
+		<div class="span5">
+			<!-- tabs to toggle between previous/upcoming shifts -->
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Previous Shifts</a></li>
+					<li><a href="#tabs-2">Upcoming Shifts</a></li>
+				</ul>
+				<div id="tabs-1">
+					<!-- shows previous shifts -->
+					<%= render :partial => 'previous_shifts' %>
+				</div>
+				<div id="tabs-2">
+					<!-- shows upcoming shifts -->
+					<%= render :partial => 'upcoming_shifts' %>
+				</div>
+			</div>
+		</div>
+		<div class="span2">&nbsp;</div>
+	</div>
+</div>

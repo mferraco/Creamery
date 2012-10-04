@@ -1,0 +1,12 @@
+<%= simple_form_for @assignment, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="well">
+  	<fieldset>
+		<%= f.input :start_date, :as => :string, :input_html => {:class => "datepicker", :value => (@assignment.start_date.strftime("%m/%d/%Y") unless @assignment.start_date.nil?) } %> </br>
+		<%= f.input :pay_level, :as => :radio_buttons, :collection => 1..6, :item_wrapper_class => 'inline' %> </br>
+		<%= f.input :employee_id, :collection => Employee.alphabetical.active.all, :id => :name, :prompt => "Select ..." %> </br>
+		<%= f.input :store_id, :collection => Store.alphabetical.active.all, :id => :name, :prompt => "Select ..." %> </br>
+		
+      	<%= f.submit %>
+  	</fieldset>
+  </div>
+<% end %>

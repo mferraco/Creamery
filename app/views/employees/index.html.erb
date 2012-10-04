@@ -1,0 +1,24 @@
+<!-- Employee Index -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">&nbsp;</div>
+		<div class="span8">
+			<!-- tabs to toggle between current/past assignments -->
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Active Employees</a></li>
+					<li><a href="#tabs-2">Inactive Employees</a></li>
+				</ul>
+				<div id="tabs-1">
+					<%= render :partial => 'active_employees' %>
+				</div>
+				<div id="tabs-2">
+					<%= render :partial => 'inactive_employees' %>
+				</div>
+			</div>
+		</div>
+		<div class="span2">&nbsp;</div>
+	</div>
+</div>
+

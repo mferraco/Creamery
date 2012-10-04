@@ -1,0 +1,24 @@
+<!-- Show Employee -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">&nbsp;</div>
+		<div class="span4">
+			<!-- Border around employee details -->
+			<div class="border">
+				<!-- render employee details partial -->
+				<%= render :partial => "employee_details" %>
+			</div>
+		</div>
+		
+		<!-- Assignment history for the individual employee -->
+		<div class="span4">
+			<!-- render the partial showing the assignment history for that employee -->
+			<%= render :partial => "assignment_history" %>
+		</br></br>
+			<!-- render the partial showing the upcoming shifts -->
+			<%= render :partial => 'upcoming_shifts' %>
+		</div>
+		<div class="span2">&nbsp;</div>
+	</div>
+</div>

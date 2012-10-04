@@ -1,0 +1,64 @@
+<!-- Form for entering information about assignments (editing or new) -->
+
+<!-- Displays error messages when entering invalid data into form -->
+<%= form_for(@store) do |f| %>
+	<% if @store.errors.any? %>
+    	<div id="error_explanation">
+    		<!-- number of errors -->
+			<br><span class="error-text"> <%= pluralize(@store.errors.count, "error") %> prohibited this store from being saved: </span>
+			<ul>
+				<!-- each error is shown -->
+      			<% @store.errors.full_messages.each do |msg| %>
+        		<li><span style="color: red;"><%= msg %></span></li>
+      			<% end %>
+      		</ul>
+    	</div>
+  	<% end %>
+  
+
+	<div class="well">
+
+	<!-- input fields for store data-->
+
+  		<div class="field">
+    		Store Name<br>
+    		<%= f.text_field :name %>
+  		</div>
+  
+  		<div class="field">
+    		Street<br>
+    		<%= f.text_field :street %>
+ 	 	</div>
+  
+  		<div class="field">
+    		City<br>
+    		<%= f.text_field :city %>
+  		</div>
+  
+  		<div class="field">
+    		State<br>
+    		<%= f.select(:state, Store::STATES_LIST) %>
+  		</div>
+  
+  		<div class="field">
+    		Zip<br>
+    		<%= f.text_field :zip %>
+  		</div>
+
+  		<div class="field">
+    		Phone Number<br>
+  		  	<%= f.text_field :phone %>
+  		</div>
+ 
+  		<div class="field">
+    		Active?<br>
+    		<%= f.check_box :active %>
+  		</div>
+  
+  		</br>
+  
+  		<!-- submits inputted store data -->
+  		<%= f.submit %>
+  
+  </div>  
+<% end %>

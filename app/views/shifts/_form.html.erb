@@ -1,0 +1,19 @@
+<%= simple_form_for @shift, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="well">
+  	<fieldset>
+		<%= f.input :assignment_id, :collection => Assignment.current.by_employee.map{|a| ["#{a.employee.name} @ #{a.store.name}", a.id]}, :prompt => 'Select...'%> </br>
+		<%= f.input :date, :as => :string, :input_html => {:class => "datepicker"} %> </br>
+		<div class="myform"> <!-- the class myform uses the div to push the 'hint' text to below the selection box-->
+			<%= f.input :start_time, :combined => true, :minute_interval => 15, :time_separator => "", :hint => 'Round Down to Next 15 Minute Interval' %>
+		</div>
+		<% if controller.action_name == "edit" %>
+			<div class="myform">
+				</br><%= f.input :end_time, :combined => true, :minute_interval => 15, :time_separator => "", :hint => 'Round Up to Next 15 Minute Interval' %>
+			</div>
+		<% end %> 
+		</br></br>
+		
+    	<%= f.submit %>  
+  	</fieldset>
+  </div>
+<% end %>

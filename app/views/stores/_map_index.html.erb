@@ -1,0 +1,17 @@
+<!-- shows a map with all stores marked on it -->
+
+<% if @stores_active.size > 0 %>
+    <% i = 1; zoom = 12; width = 800; height = 800 %>
+    <% markers = "" %>
+    <% @stores_active.each do |store| %>
+    	<% if store.active %>
+    		<% markers << "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{store.latitude},#{store.longitude}" %>
+    	<% end %>
+    	<% i+=1 %>
+    <% end %>
+    
+    <% map = "http://maps.google.com/maps/api/staticmap?&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false" %>
+    
+	<%= image_tag map %>
+
+<% end %>

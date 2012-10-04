@@ -1,0 +1,35 @@
+<!-- Store Index -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+
+		<div class="span6">
+			<div id="tabs">
+				<ul>
+					<% if can? :edit, Store %>
+						<li><a href="#tabs-1">Active Locations</a></li>
+					<% else %>
+						<li><a href="#tabs-1">Locations</a></li>
+					<% end %>
+					<% if can? :edit, Store %>
+						<li><a href="#tabs-2">Inactive Locations</a></li>
+					<% end %>
+				</ul>
+					<!-- shows stores lists -->
+					<div id="tabs-1">
+						<%= render :partial => "active_stores" %>
+					</div>
+					<% if can? :edit, Store %>
+					<div id="tabs-2">
+						<%= render :partial => "inactive_stores" %>
+					</div>
+					<% end %>
+			</div>
+		</div>
+		<div class="span6">
+			<!-- shows map of all stores -->
+			<%= render :partial => "map_index" %>
+		</div>
+		<div class="span2">&nbsp;</div>
+	</div>
+</div>

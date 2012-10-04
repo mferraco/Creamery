@@ -1,0 +1,45 @@
+<% if @employees_active.size == 0%>
+	<h3>~ No Active Employees in the Systems ~</h3>
+<% else %>
+<!-- table showing all employees -->
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th><u>Name</u></th>
+			<th><u>Phone</u></th>
+			<th><u>Role</u></th>
+			<th><u>Currently Assigned</u></th>
+			<th></th>
+		</tr>
+	</thead>
+	<!-- loop through employees -->
+	<% @employees_active.each do |employee| %>
+	<tr>
+		<!-- name -->
+		<td><%= link_to employee.name, employee %></td>
+		<!-- phone -->
+		<td><%= number_to_phone employee.phone %></td>
+		<!-- role -->
+		<td><%= employee.role.capitalize %></td>
+		<!-- link to store currently assigned to -->
+		<td>
+			<% if employee.current_assignment.nil? %>
+				<h5>~ No Assignment ~</h5>
+			<% else %>
+				<%= link_to employee.current_assignment.store.name, employee.current_assignment.store %>
+			<% end %>
+		</td>
+		<!-- link to edit -->
+		<td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+	</tr>
+	<% end %>
+</table>
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate"> <%= will_paginate @employees_active, :param_name => 'active', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %> </span>
+<!-- button with link to create a new employee -->
+<%= link_to(new_employee_path) do %>
+<button class="btn btn-primary">
+	<i class="icon-plus-sign icon-white"></i><span class="white-text">New Employee </span>
+</button>
+<% end %>
+<% end %>

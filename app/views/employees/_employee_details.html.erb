@@ -1,0 +1,80 @@
+<!-- All of the details about the selected employee -->
+<h3><%= @employee.last_name %>, <%= @employee.first_name %></h3>
+
+<br />
+
+<b>Role:</b>
+<%= @employee.role.capitalize %>
+
+<br />
+<br />
+
+<b>Phone:</b>
+<%= number_to_phone(@employee.phone) %>
+
+<br />
+<br />
+
+<b>Date of Birth:</b>
+<%= @employee.date_of_birth.strftime("%m/%d/%y") %>
+
+<br />
+<br />
+
+<b>Age:</b>
+<%= @employee.age %>
+
+<br />
+<br />
+
+<b>SSN:</b>
+<%= @employee.ssn %>
+
+<% if !@employee.user.nil? %>
+	<br />
+	<br />
+
+	<b>Email:</b>
+	<%= @employee.user.email %>
+<% end %>
+
+<br />
+<br />
+
+<b>Active: </b>
+<%= if @employee.active then 'Yes' else 'No' end%>
+
+<% if can? :update, @employee %>
+<br />
+<br />
+<br />
+<br />
+
+<!-- Button with link to the employee 'edit' page -->
+	<%= link_to(edit_employee_path(@employee)) do %>
+		<button class="btn btn-primary">
+			<i class="icon-pencil icon-white"></i>
+			<span class="white-text"> Edit</span>
+		</button>
+	<% end %>
+<% end %>
+
+<% if can? :delete, @employee %> <!-- if the user has permission to delete the employee -->
+	<!-- Button with link to delete the employee -->
+	<%= link_to(@employee, { :confirm => "Are you sure?", :method => :delete }) do %>
+		<button class="btn btn-danger">
+			<i class="icon-trash icon-white"></i>
+			<span class="white-text"> Delete</span>
+		</button>
+	<% end %>
+<% end %>
+
+<% if can? :read, Employee %> <!-- if the user has permission to read employees -->
+	<!-- Button with link to the employee 'index' page -->
+	<%= link_to(employees_path) do %>
+		<button class="btn btn-success">
+			<i class="icon-align-justify icon-white"></i>
+			<span class="white-text"> View All</span>
+		</button>
+	<% end %>
+<% end %>

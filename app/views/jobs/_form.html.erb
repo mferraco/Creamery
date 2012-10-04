@@ -1,0 +1,12 @@
+<%= simple_form_for @job, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="well">
+  	<fieldset>
+		<%= f.input :name, :required => false %>
+		<%= f.input :description, :input_html => { :rows => 3, :cols => 5 } %> </br>
+		Active?</br>
+		<%= f.input :active, :label => false %> </br>
+		
+    	<%= f.submit %>  
+  	</fieldset>
+  </div>
+<% end %>

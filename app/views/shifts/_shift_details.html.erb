@@ -1,0 +1,73 @@
+<h2><u>Shift Details</u></h2>
+
+<br />
+
+<!-- All of the details about the selected shift -->
+<%= link_to @shift.assignment.employee.proper_name, @shift.assignment.employee %> @ <%= link_to @shift.assignment.store.name, @shift.assignment.store %>
+
+<br />
+<br />
+
+<b>Date:</b>
+<%= @shift.date.strftime("%m/%d/%y") %>
+
+<br />
+<br />
+
+<b>Start Time:</b>
+<%= @shift.start_time.strftime("%I:%M %p")%>
+
+<br />
+<br />
+
+<b>End Time:</b>
+<%= @shift.end_time.strftime("%I:%M %p") %>
+
+<br />
+<br />
+
+<b>Notes:</b>
+<%= @shift.notes %>
+
+<br />
+<br />
+
+<b>Jobs Worked:</b>
+<ul>
+	<% if !(@shift_jobs.empty?) %>
+		<% @shift_jobs.each do |shift_job| %>
+			<li><%= shift_job.job.name %></li>
+		<% end %>
+	<% else %>
+		<!-- put button to add jobs to the shift here -->
+	<% end %>
+</ul>
+
+<br />
+<br />
+
+<!-- Button with link to the shift 'edit' page -->
+<%= link_to(edit_shift_path(@shift)) do %>
+	<button class="btn btn-primary">
+		<i class="icon-pencil icon-white"></i>
+		<span class="white-text"> Edit</span>
+	</button>
+<% end %>
+
+<!-- Button with link to delete the shift -->
+<%= link_to(@shift, { :confirm => "Are you sure?", :method => :delete }) do %>
+	<button class="btn btn-danger">
+		<i class="icon-trash icon-white"></i>
+		<span class="white-text"> Delete</span>
+	</button>
+<% end %>
+
+<% if can? :view, Shift %>
+	<!-- Button with link to the shift 'index' page -->
+	<%= link_to(shifts_path) do %>
+		<button class="btn btn-success">
+			<i class="icon-align-justify icon-white"></i>
+			<span class="white-text"> View All</span>
+		</button>
+	<% end %> 
+<% end %>

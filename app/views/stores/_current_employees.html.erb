@@ -1,0 +1,28 @@
+<h2><u>Current Employees</u></h2>
+
+<!-- if the store has employees -->
+<% if @store.employees.size > 0 %> 
+	<!-- table holding the employee details -->
+	<table class = "table table-striped"
+		<thead>
+			<th><u>Name</u></th>
+			<th><u>Pay Level</u></th>
+		</thead>
+		
+		<!-- loop through all the store's current assignments -->
+		<% @assignments.each do |assign| %>
+			<tr>
+				<!-- employee name -->
+				<th><%= link_to assign.employee.name, assign.employee %></th>
+				<!-- employee pay level -->
+				<th><%= assign.pay_level %></th>
+			</tr>
+		<% end %>
+	</table>
+<% else %> <!-- the store has no assigned employees -->
+	<h3>~ No current employees ~</h3>
+<% end %>
+
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+<%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %></span>

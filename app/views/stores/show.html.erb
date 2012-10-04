@@ -1,0 +1,39 @@
+<!-- Show Store -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<% if logged_in? && (can? :read, Employee) %> <!-- if you are logged in and can read employee info -->
+			<div class="span2">&nbsp;</div>
+			<div class="span4">
+				<!-- Border around the store details -->
+				<div class="border">
+					<!-- shows store details -->
+					<%= render :partial => "store_details" %>
+				</div>
+				<br>
+				<!-- shows store location on a map -->
+				<%= image_tag @store.create_map_link %>
+			</div>
+		
+			<!-- Show the current employees assigned to the store -->
+			<div class="span4">
+				<!-- only shows these if you are logged in and allowed to see it -->
+				<%= render :partial => 'current_employees' %>
+			</div>
+			<div class="span2">&nbsp;</div>
+		<% else %> <!-- not logged in -->
+			<div class="span4">&nbsp;</div>
+			<div class="span4">
+				<!-- Border around the store details -->
+				<div class="border">
+					<!-- shows store details -->
+					<%= render :partial => "store_details" %>
+				</div>
+				<br>
+				<!-- show store location on map -->
+				<%= image_tag @store.create_map_link %>
+			</div>
+			<div class="span4">&nbsp;</div>
+		<% end %>
+	</div>
+</div>

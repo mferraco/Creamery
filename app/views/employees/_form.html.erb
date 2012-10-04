@@ -1,0 +1,64 @@
+<!-- Form for entering information about employees (editing or new) -->
+
+<!-- Displays error messages when entering invalid data into form -->
+<%= form_for(@employee) do |f| %>
+	<% if @employee.errors.any? %>
+    	<div id="error_explanation">
+    		<!-- number of errors -->
+			<br><span class="error-text"> <%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved: </span>
+			<ul>
+				<!-- each error is shown -->
+      			<% @employee.errors.full_messages.each do |msg| %>
+        		<li><span style="color: red;"><%= msg %></span></li>
+      			<% end %>
+      		</ul>
+    	</div>
+  	<% end %>
+  
+
+	<div class="well">
+	
+	<!-- input fields for employee data -->
+		
+		<div class="field">
+    		First Name<br>
+    		<%= f.text_field :first_name %>
+  		</div>
+  
+  		<div class="field">
+    		Last Name<br>
+    		<%= f.text_field :last_name %>
+  		</div>
+  
+  		<div class="field">
+    		SSN<br>
+    		<%= f.text_field :ssn %>
+  		</div>
+  
+  		<div class="field">
+    		Date of Birth<br>
+   			<%= f.date_select( :date_of_birth, :order => [:month, :day, :year], :start_year => Time.now.year-100, :end_year => Time.now.year) %>
+  		</div>
+
+  		<div class="field">
+    		Phone Number<br>
+    		<%= f.text_field :phone %>
+  		</div>
+ 
+  		<div class="field">
+    		Role<br>
+    		<%= f.select(:role, Employee::ROLES_LIST) %>
+  		</div>
+ 
+  		<div class="field">
+   			Active?<br>
+    		<%= f.check_box :active %>
+  		</div>
+  
+  		</br>
+  
+  		<!-- submits inputted employee data -->
+  		<%= f.submit %>
+
+  </div>
+<% end %>

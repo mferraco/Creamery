@@ -1,0 +1,30 @@
+<% if @past_shifts.size == 0 %> <!-- if there are no past shifts -->
+	<h3>~ No Top Employees ~</h3>
+<% else %>
+<!-- table showing the top 5 employees -->
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th><u>Name</u></th>
+			<th><u>Hours Worked<br>(last two weeks)</u></th>
+			<th><u>Store</u></th>
+		</tr>
+	</thead>
+	<% count = 0 %>
+	<!-- loop through employees -->
+	<% @employee_hours_array.each do |employee_hours| %>
+	<% count+=1 %>
+	<tr>
+		<!-- name -->
+		<td><%= link_to employee_hours[0].name, employee_hours[0] %></td>
+		<!-- number of hours worked -->
+		<td><%= employee_hours[1] %></td>
+		<!-- store name -->
+		<td><%= link_to employee_hours[0].current_assignment.store.name, employee_hours[0].current_assignment.store %></td>
+	</tr>
+	<% if count == 5 %> <!-- once all 5 employees are listed break out of the loop -->
+		<% break %>
+	<% end %>
+	<% end %>
+</table>
+<% end %>

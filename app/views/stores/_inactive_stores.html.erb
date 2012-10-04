@@ -1,0 +1,38 @@
+<% if @stores_inactive.size == 0 %>
+	<h3>~ No Inactive Stores in System ~</h3>
+<% else %>
+
+<!-- table showing all stores -->
+<table class="table table-striped">
+	<tr>
+		<th></th>
+		<th><u>Name</u></th>
+	</tr>
+	<!-- loop through stores -->
+	<% @stores_inactive.each do |store| %>
+	<tr>
+		<td><%= i %>.</td>
+		<!-- name -->
+		<td><%= link_to store.name, store %></td>
+		<% if can? :edit, Store %>
+			<!-- link to edit -->
+			<td><%= link_to 'Edit', edit_store_path(store) %></td>
+		<% end %>
+	</tr>
+	<% end %>
+</table>
+
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+	<%= will_paginate @stores_inactive, :param_name => 'inactive', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+
+<!-- button with link to create a new store -->
+<% if can? :create, Store %>
+	<%= link_to(new_store_path) do %>
+		<button class="btn btn-primary">
+			<i class="icon-plus-sign icon-white"></i><span class="white-text">New Store </span>
+		</button>
+	<% end %>
+<% end %>
+<% end %>

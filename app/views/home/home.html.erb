@@ -1,0 +1,11 @@
+<% if logged_in? %>
+	<% if @current_user.employee.role == 'employee' %>
+		<%= render :partial => 'employee_dashboard' %>
+	<% elsif @current_user.employee.role == 'manager' %>
+		<%= render :partial => 'manager_dashboard' %>
+	<% elsif @current_user.employee.role == 'admin' %>
+		<%= render :partial => 'admin_dashboard' %>
+	<% end %>
+<% else %>
+	<%= render :partial => 'guest_dashboard' %>
+<% end %>

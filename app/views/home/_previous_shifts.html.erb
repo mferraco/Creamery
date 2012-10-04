@@ -1,0 +1,48 @@
+<% if @previous_shifts.nil? %> <!-- if the employee has no previous shifts -->
+	<h4>~ No Previous Shifts ~</h4>
+<% else %>
+
+<table class = "table table-striped">
+	<thead>
+		<tr>
+			<th><u>Store</u></th>
+			<th><u>Date</u></th>
+			<th><u>Time Worked</u></th>
+		</tr>
+	</thead>
+	<!-- loop through shifts -->
+	<% @previous_shifts.each do |shift| %>
+  		<tr>
+  			<!-- store -->
+  			<td><%= link_to shift.assignment.store.name, shift.assignment.store %></td>
+  			<!-- date -->
+  			<td><%= shift.date.strftime('%m/%d/%y') %></td>
+  			<!-- start time -->
+    		<td><%= shift.start_time.strftime("%I:%M %p") %> - <%= shift.end_time.strftime("%I:%M %p") %></td>
+    		<!-- link to details -->
+    		<td>
+    			<% if !shift.jobs.blank? %>
+    				<div class="accordion">
+    					<h3><a href="#"> Jobs </a></h3>
+    					<div>
+    						<ul>
+    							<% shift.jobs.each do |job| %>
+    								<li><%= job.name %></li>
+    							<% end %>
+    						</ul>
+    					</div>    					
+    				</div>
+    			<% else %>
+    				<p>No Jobs Assigned</p>
+    			<% end %>
+    		</td>
+  		</tr>
+	<% end %>
+</table>
+			
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+	<%= will_paginate @previous_shifts, :param_name => 'prev_shifts', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+
+<% end %>

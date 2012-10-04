@@ -1,0 +1,24 @@
+<!-- editing stores -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">&nbsp;</div>
+		<div class="span4">
+			
+			<div class="page-header"><h1>Editing Store</h1></div>
+
+			<!-- shows form to edit employee data -->
+			<%= render 'form' %>
+
+			<!-- create back button linked to store 'show' page -->
+			<%= link_to(@store) do -%>
+  				<button class="btn btn-small btn-info">
+  					<i class="icon-arrow-left icon-white"></i>
+  					<span>Back</span>
+  				</button>
+ 			<% end -%>
+
+		</div>
+		<div class="span4">&nbsp;</div>
+	</div>
+</div>

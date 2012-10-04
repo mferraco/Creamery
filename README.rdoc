@@ -1,0 +1,25 @@
+Extra Credit:
+--Toggling active/inactive entities
+	* the employee, store, assignment, shift, and job index pages all use the toggle feature
+--Dealt with shift times crossing over midnight (can get shift length for a shift that crosses over midnight)
+
+
+
+
+
+
+
+Login Info:
+password = creamery (same for all users)
+
+admin - alex@example.com
+admin - mark@example.com
+manager - rachel@example.com
+employee - dusty@example.com
+
+Each user has different privelages.
+
+Admins - can do anything on the site
+Managers - can only and edit information related to their store
+Employees - can only view their information
+Not logged in - can only view basic store info

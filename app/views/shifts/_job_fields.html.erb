@@ -1,0 +1,8 @@
+<fieldset>
+	<% for job in @jobs  %>
+	   <%= check_box_tag "shift[job_ids][]", job.id, @shift.jobs.include?(job) %>
+		 <%= job.name %>
+	   <br />
+	<% end  %>
+	<br>
+</fieldset>

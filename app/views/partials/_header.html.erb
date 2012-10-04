@@ -1,0 +1,89 @@
+
+<!-- This is the header partial.  It appears on every page. -->
+
+<div class="logo" style = 'background-color: #9BFFF6;'>
+	<!-- header logo above nav-bar -->
+	<%= link_to(home_path) do %>
+		<%= image_tag 'ice_cream.jpg', :size => '200x200' %>
+	<% end %>
+	
+	<%= image_tag 'logo.jpg', :size => '330x330' %>
+	<%= image_tag 'creamery.jpg', :size => '540x540' %>
+</div>
+<!-- build the navbar for the top of the page -->
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+  		<div class="nav-collapse">
+  			<ul class = "nav">
+  				<li class="divider-vertical"></li>
+  					<li>
+	  					<%= link_to(home_path) do %>
+  							<i class="icon-home icon-white"></i> Home
+  						<% end %>
+  					</li>
+  				<% if can? :read, Employee %>
+  					<li class="divider-vertical"></li>
+  					<!-- links to employees, stores, and assignments in the navbar -->
+  					<li>
+	  					<%= link_to(employees_path) do %>
+  							<i class="icon-user icon-white"></i> Employees
+  						<% end %>
+  					</li>
+  				<% end %>
+  				<% if logged_in? && (can? :read, Store) %>
+  				<li class="divider-vertical"></li>
+  				<li>
+  					<%= link_to(stores_path) do %>
+  						<i class="icon-shopping-cart icon-white"></i> Stores
+  					<% end %>
+  				</li>
+  				<% end %>
+  				<% if can? :read, Assignment %>
+  				<li class="divider-vertical"></li>
+  				<li>
+  					<%= link_to(assignments_path) do %>
+  						<i class="icon-tag icon-white"></i> Assignments
+  					<% end %>
+  				</li>
+  				<% end %>
+  				<% if can? :read, Shift %>
+  				<li class="divider-vertical"></li>
+  				<li>
+  					<%= link_to(shifts_path) do %>
+  						<i class="icon-list-alt icon-white"></i> Shifts
+  					<% end %>
+  				</li>
+  				<% end %>
+  				<% if can? :read, Job %>
+  				<li class="divider-vertical"></li>
+  				<li>
+  					<%= link_to(jobs_path) do %>
+  						<i class="icon-folder-open icon-white"></i> Jobs
+  					<% end %>
+  				</li>
+  				<% end %>
+  				<li class="divider-vertical"></li>
+  			</ul>
+  				
+  			<ul class="nav pull-right">
+  				<% if can? :edit, Store %>
+  						<%= form_tag(search_path, :class => 'navbar-search') do %>
+							<%= text_field_tag 'query', '', :class => 'search-query span2', :placeholder => 'Search Employees' %>
+						<% end %>
+				<% end %>
+				
+  				<% if logged_in? %>
+  					<li class="divider-vertical"></li>
+  					<li>
+	  					<%= link_to(logout_path) do -%>
+  							Logout
+  						<% end %>
+  					</li>
+  					<li class="divider-vertical"></li>
+  				<% end %>
+  			</ul>
+  		</div>
+    </div>
+  </div>
+</div>

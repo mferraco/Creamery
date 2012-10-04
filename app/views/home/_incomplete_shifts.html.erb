@@ -1,0 +1,46 @@
+<% if @incomplete_shifts.nil? %> <!-- if there are no incomplete shifts for that store-->
+	<h4>~ All Shifts Complete ~</h4>
+<% else %>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th><u>Name</u></th>
+			<th><u>Date</u></th>
+		</tr>
+	</thead>
+	<!-- loop through all the shifts -->
+	<% @incomplete_shifts.each do |shift| %>
+	<tr>
+		<!-- name -->
+		<td><%= link_to shift.assignment.employee.name, shift.assignment.employee %></td>
+		<!-- start time -->
+		<td><%= shift.date.strftime("%m/%d/%y") %></td>
+		<!-- link to edit shift -->
+		<td>
+			<!-- button with link to edit the shift -->
+			<%= link_to(edit_shift_path(shift)) do %>
+  				<button class="btn btn-success">
+  					<i class="icon-plus-sign icon-white"></i> <span class="white-text">Edit </span>
+  				</button>
+			<% end %>
+		</td>
+		<!-- link to delete shift -->
+		<td>
+			<!-- Button with link to delete the shift -->
+			<%= link_to(shift, { :confirm => "Are you sure?", :method => :delete }) do %>
+				<button class="btn btn-danger">
+					<i class="icon-trash icon-white"></i>
+					<span class="white-text">Delete </span>
+				</button>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+	<%= will_paginate @incomplete_shifts, :param_name => 'incomplete', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+<% end %>
+

@@ -1,0 +1,37 @@
+<!-- table showing current shifts -->
+<table class="table table-striped">
+	<tr>
+		<th><u>Store Name</u></th>
+		<th><u>Employee Name</u></th>
+		<th><u>Date</u></th>
+		<th><u>Start Time</u></th>
+		<th><u>End Time</u></th>
+	</tr>
+	<!-- loop through all the current shifts -->
+	<% @shifts_current.each do |shift| %>
+	<tr>
+		<!-- store name -->
+		<td><%= link_to shift.assignment.store.name, shift.assignment.store %></td>
+		<!-- employee name -->
+		<td><%= link_to shift.assignment.employee.name, shift.assignment.employee %></td>
+		<!-- date -->
+		<td><%= shift.date.strftime("%m/%d/%y") %></td>
+		<!-- start time -->
+		<td><%= shift.start_time.strftime("%I:%M %p") %></td>
+		<!-- end time -->
+		<td><%= shift.end_time.strftime("%I:%M %p") %></td>
+		<!-- link to details -->
+		<td><%= link_to 'Details', shift %></td>
+		<!-- link to edit -->
+		<td><%= link_to 'Edit', edit_shift_path(shift) %></td>
+	</tr>
+	<% end %>
+</table>
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate"> <%= will_paginate @shifts_current, :param_name => 'current_page', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %> </span>
+<!-- new shift button which links to the 'new' page -->
+<%= link_to(new_shift_path) do %>
+<button class="btn btn-primary">
+	<i class="icon-plus-sign icon-white"></i><span class="white-text">New Shift </span>
+</button>
+<% end %>

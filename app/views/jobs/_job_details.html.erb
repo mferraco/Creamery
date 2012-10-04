@@ -1,0 +1,41 @@
+<!-- All of the details about the selected job -->
+<h3><%= @job.name %></h3>
+
+<br />
+
+<b>Description:</b> <br>
+<%= @job.description %>
+
+<br />
+<br />
+
+<b>Active?</b>
+<%= if @job.active then 'Yes' else 'No' end%>
+
+<br />
+<br />
+
+
+<!-- Button with link to the job 'edit' page -->
+<%= link_to(edit_job_path(@job)) do %>
+	<button class="btn btn-primary">
+		<i class="icon-pencil icon-white"></i>
+		<span class="white-text"> Edit</span>
+	</button>
+<% end %>
+
+<!-- Button with link to delete the job -->
+<%= link_to(@job, { :confirm => "Are you sure?", :method => :delete }) do %>
+	<button class="btn btn-danger">
+		<i class="icon-trash icon-white"></i>
+		<span class="white-text"> Delete</span>
+	</button>
+<% end %>
+
+<!-- Button with link to the job 'index' page -->
+<%= link_to(jobs_path) do %>
+	<button class="btn btn-success">
+		<i class="icon-align-justify icon-white"></i>
+		<span class="white-text"> View All</span>
+	</button>
+<% end %> 

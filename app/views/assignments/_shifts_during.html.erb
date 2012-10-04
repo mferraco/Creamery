@@ -1,0 +1,29 @@
+<!-- Completed Shifs During the Specified Assignment -->
+<h1><u>Completed Shifts:</u></h1>
+<% if @shifts.empty? %> <!-- if there are no completed shifts then tell the user -->
+	<h3>~ No Shifts Completed ~</h3>
+<% else %>
+	<!-- table showing completed shifts -->
+	<table class="table table-striped">
+		<tr>
+			<th><u>Employee Name</u></th>
+			<th><u>Duration</u></th>
+		</tr>
+		<!-- loop through all the shifts -->
+		<% @shifts.each do |shift| %>
+		<tr>
+			<!-- employee name -->
+			<td><%= link_to shift.assignment.employee.name, shift.assignment.employee %></td>
+			<!-- duration of shift -->
+			<td><%= shift.get_shift_length %></td>
+			<!-- link todetails of shift -->
+			<td><%= link_to 'Details', shift%></td>
+		</tr>
+		<% end %>
+	</table>
+	
+	<!-- Add the pagination using will_paginate gem -->
+	<span class="paginate">
+		<%= will_paginate @shifts, :param_name => 'current_page', :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+	</span>
+<% end %>

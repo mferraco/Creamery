@@ -1,0 +1,25 @@
+<!-- editing jobs -->
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span4">&nbsp;</div>
+		<div class="span4">
+			
+			<div class="page-header"><h1>Editing Job</h1></div>
+			
+			<!-- shows form to edit job data -->
+			<%= render 'form' %>
+			
+			<!-- create back button linked to job 'show' page -->
+			<%= link_to(@job) do -%>
+				<button class="btn btn-small btn-info">
+					<i class="icon-arrow-left icon-white"></i>
+					<span>Back</span>
+				</button>
+			<% end -%>
+			
+		</div>
+		<div class="span4">&nbsp;</div>
+	</div>
+</div>
+

@@ -1,0 +1,27 @@
+<%= simple_nested_form_for @shift, :html => { :class => 'form-horizontal' } do |shift_form| %>
+	<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2">&nbsp;</div>
+		<div class="span4">
+			<fieldset>
+				<legend>Edit Shift</legend>
+				<div class = "well">
+					<!-- render the shift fields -->
+					<%= render "shift_fields", :f => shift_form %>
+					<%= shift_form.submit nil, :class => 'btn btn-primary' %>
+				</div>
+		  </fieldset>
+		</div>
+		<div class="span4">
+			<legend>Add some jobs to this shift</legend>
+			<div class="well">
+				<%= shift_form.simple_fields_for :jobs do |job_form| %>
+				<!-- render the nested shift_job fields -->
+					<%= render "job_fields", :f => job_form %>
+				<% end %>
+			</div>
+		</div>
+		<div class="span2">&nbsp;</div>
+	</div>
+	</div>
+<% end %>

@@ -1,0 +1,68 @@
+<% if @store.nil? %> <!-- if the manager is not yet assigned to a store -->
+	<h3>Not Yet Assigned to a Store</h3>
+<% else %> <!-- the manager is assigned to a store -->
+<div class="page-header">
+	<h1><u>Employees at <%= @store.name %>:</u></h1>
+</div>
+
+<% if @assignments.size == 0 %> <!-- if the manager's store does not have any employees -->
+	<h3>~ No Employees Assigned ~</h3>
+<% else %> <!-- the manager's store does have employees -->
+<!-- table showing all employees -->
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th><u>Name</u></th>
+			<th><u>Shift Hours<br>(last 2 weeks)</u></th>
+			<th><u>Date<br>(last shift)</u></th>
+		</tr>
+	</thead>
+	<!-- loop through the store's assignments -->
+	<% @assignments.each do |assignment| %>
+	<tr>
+		<!-- name -->
+		<td><%= link_to assignment.employee.name, assignment.employee %></td>
+		<!-- add up shift hours -->
+		<td>
+			<% if @shifts_past.nil? %>
+				<h4>~ no hours ~</h4>
+			<% else %>
+				<% count = 0 %>
+				<% @shifts_past.each do |shift| %>
+					<% if shift.employee == assignment.employee %>
+						<% count+=shift.get_shift_length %>
+					<% end %>
+				<% end %>
+				<% if count == 0 %>
+					<h4>~ no hours ~</h4>
+				<% else %>
+					<h4><%= count %></h4>
+				<% end %>
+			<% end %>
+		</td>
+		<!-- date last worked -->
+		<td><% if assignment.employee.get_last_shift.nil? %> <!-- if the employee does not have any past shifts-->
+				No Past Shifts
+			<% else %>
+				<%= assignment.employee.get_last_shift.strftime('%m/%d/%y') %>
+			<% end %>
+		</td>
+
+		<td>
+			<!-- button with link to create a new employee -->
+			<%= link_to(new_shift_path(:assignment_id => assignment.id)) do %>
+  				<button class="btn btn-primary">
+  					<i class="icon-plus-sign icon-white"></i> <span class="white-text">New Shift </span>
+  				</button>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+	<%= will_paginate @assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
+<% end %>
+<% end %>
